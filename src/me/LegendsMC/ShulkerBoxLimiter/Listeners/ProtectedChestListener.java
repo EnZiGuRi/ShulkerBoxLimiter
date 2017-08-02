@@ -6,15 +6,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 
 import com.griefcraft.lwc.LWC;
 import com.griefcraft.model.Protection;
-import com.griefcraft.scripting.event.LWCBlockInteractEvent;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.ShulkerBox;
@@ -22,17 +23,19 @@ import org.bukkit.block.ShulkerBox;
 public class ProtectedChestListener implements Listener {
 	
 	LWC lwc = com.griefcraft.lwc.LWC.getInstance();
+	
 	Protection isProtected;
 	
 	@EventHandler(priority = EventPriority.HIGH)
-    public void onChestOpen(LWCBlockInteractEvent event) {
-		Block chest = event.getBlock();
-		Player player = (Player) event.getPlayer();
-		isProtected = lwc.findProtection(chest);
-		lwc.sendLocale(player, "protection.interact.create.finalize");
-		//if(com.griefcraft.modules.create.CreateModule){
-			
-		//}
+    public void onClickedChest(PlayerInteractEvent event) {
+		Action action = event.getAction();
+		Block chest;
+		if(event.getClickedBlock().getType() == Material.CHEST ){
+			if(action.equals(Action.RIGHT_CLICK_BLOCK) || (action.equals(Action.RIGHT_CLICK_BLOCK))){
+				chest = event.getClickedBlock();
+				isProtected = lwc.findProtection(chest);
+			}
+		}
     }
 	
     @EventHandler
