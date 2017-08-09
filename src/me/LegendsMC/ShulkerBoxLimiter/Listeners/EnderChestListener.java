@@ -19,8 +19,8 @@ public class EnderChestListener implements Listener {
 		Player player = (Player) event.getWhoClicked();
         Inventory bottom = event.getView().getBottomInventory();
         ItemStack clickeditem = event.getCurrentItem();
-        BlockStateMeta clickeditemmeta = (BlockStateMeta)clickeditem.getItemMeta();
-        if(clickeditem.getItemMeta() instanceof BlockStateMeta){
+        if((clickeditem != null) && (clickeditem.getItemMeta() instanceof BlockStateMeta)){
+            BlockStateMeta clickeditemmeta = (BlockStateMeta)clickeditem.getItemMeta();
             if(clickeditemmeta.getBlockState() instanceof ShulkerBox){
 	            if(top.getType() == InventoryType.ENDER_CHEST && bottom.getType() == InventoryType.PLAYER){
 	                if(event.getCurrentItem() != null && event.getCurrentItem().getType() != Material.AIR) {

@@ -1,4 +1,5 @@
 name: ShulkerBoxLimiter
 main: me.LegendsMC.ShulkerBoxLimiter.ShulkerBoxLimiter
 description: ShulkerBoxLimiter Plugin!
+depend: [LWC]
 version: 1

@@ -17,13 +17,12 @@ import me.LegendsMC.ShulkerBoxLimiter.Listeners.ProtectedChestListener;
 
 public class ShulkerBoxLimiter extends JavaPlugin {
 	private static Plugin instance;
-	public LWC lwc = null;
+	public static LWC lwc = null;
 
 	boolean DebugMode = getConfig().getBoolean("DebugMode");
 
 	public void onEnable() {
 		instance = this;
-		
 		Plugin lwcPlugin = getServer().getPluginManager().getPlugin("LWC");
         if(lwcPlugin != null) {
             lwc = ((LWCPlugin) lwcPlugin).getLWC();
